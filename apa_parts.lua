@@ -6,7 +6,7 @@ local dev = utils.assert_die(io.open(devn, "rb"))
 for part, err in apa.partitions(dev) do
 	utils.assert_die(part, err)
 	local pname = part.id:gsub("\0+$", "")
-	if part.main == 0 then
+	if part.main == 0 and part.type ~= apa.type.free then
 		print(pname)
 	end
 end
